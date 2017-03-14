@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'json'
-require 'byebug'
 
 File.open('./lib/course.json', 'r') do |file|
   file.each do |line|
