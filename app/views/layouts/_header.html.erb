@@ -2,7 +2,6 @@
   <div class="container">
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Sign up", root_path %></li>
         <% if logged_in? %>
           <li> <%= link_to "Courses", courses_path %> </li>
           <li> <%= link_to "Instructors", instructors_path %> </li>
@@ -21,6 +20,7 @@
             </ul>
           </li>
         <% else %>
+          <li><%= link_to "Sign up", root_path %></li>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
