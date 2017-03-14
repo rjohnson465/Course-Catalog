@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 #  get 'sessions/new'
-
-  get 'static_pages/signup'
+  get    '/courses',  to: 'static_pages#courses'
+  get    '/instructors', to: 'static_pages#instructors'
+  get    '/subjects', to: 'static_pages#subjects'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'

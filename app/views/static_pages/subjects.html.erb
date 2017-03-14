@@ -1,0 +1,19 @@
+<h1>Subjects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Abbreviation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.name %></td>
+        <td><%= subject.abbreviation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
