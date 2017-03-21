@@ -4,12 +4,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     enrollment = Enrollment.find_by(user: @user.id)
     courses_id_arr = enrollment.courses == nil ? nil : enrollment.courses.split(',')
-    @courses = nil
+    @courses = []
     if (courses_id_arr)
-      @courses = []
       courses_id_arr.each do |c|
         course = Course.find(c)
-        @courses << course
+        @courses.push(course)
       end
     end
   end
