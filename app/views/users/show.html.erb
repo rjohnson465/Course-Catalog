@@ -6,4 +6,28 @@
       </h1>
     </section>
   </aside>
+
+  <aside class="col-md-4">
+    <section class="user_enrollment_info">
+      <h1> Enrolled Courses </h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Code</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @courses.each do |course| %>
+            <tr>
+              <td><%= course.name %></td>
+              <td><%= course.code %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </section>
+  </aside>
+
 </div>

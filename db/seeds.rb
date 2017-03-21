@@ -8,15 +8,6 @@
 
 require 'json'
 
-File.open('./lib/course.json', 'r') do |file|
-  file.each do |line|
-    json = JSON.parse(line)
-    json.each do |course|
-      Course.create(name: course["name"], code: course["code"], given_id: course["id"], subjects: course["subjects"], description: course["description"])
-    end
-  end
-end
-
 File.open('./lib/instructor.json', 'r') do |file|
   file.each do |line|
     json = JSON.parse(line)
@@ -31,6 +22,24 @@ File.open('./lib/subject.json', 'r') do |file|
     json = JSON.parse(line)
     json.each do |subject|
       Subject.create(name: subject["name"], abbreviation: subject["abbreviation"], given_id: subject["id"])
+    end
+  end
+end
+
+File.open('./lib/course.json', 'r') do |file|
+  file.each do |line|
+    json = JSON.parse(line)
+    json.each do |course|
+      # get all subjects associated with course
+      c = course["subjects"]
+      subject_array = Array.new
+      c.each do |segsubpair|
+        if (segsubpair && segsubpair["id"] && Subject.find_by(given_id: segsubpair["id"]))
+          subject_name = Subject.find_by(given_id: segsubpair["id"]).name
+          subject_array.push(subject_name) unless subject_name == nil
+        end
+      end
+      Course.create(name: course["name"], code: course["code"], given_id: course["id"], subjects: subject_array, description: course["description"])
     end
   end
 end

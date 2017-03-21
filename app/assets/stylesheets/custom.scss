@@ -1,6 +1,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+table {
+  tr{
+    padding: 2px;
+  }
+  td {
+    padding: 5px;
+  }
+}
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -25,7 +34,12 @@ $gray-medium-light: #eaeaea;
 
 aside {
   section.user_info {
+    width:50%;
     margin-top: 20px;
+  }
+  section.user_enrollment_info {
+    float: left;
+    width: 50%;
   }
   section {
     padding: 10px 0;

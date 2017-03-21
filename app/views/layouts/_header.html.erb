@@ -3,6 +3,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li> <%= link_to "Search", search_index_path %> </li>
           <li> <%= link_to "Courses", courses_path %> </li>
           <li> <%= link_to "Instructors", instructors_path %> </li>
           <li> <%= link_to "Subjects", subjects_path %> </li>
