@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
-    enrollment = Enrollment.find_by(user: @user.id)
-    courses_id_arr = enrollment.courses == nil ? nil : enrollment.courses.split(',')
-    @courses = []
-    if (courses_id_arr)
-      courses_id_arr.each do |c|
-        course = Course.find(c)
-        @courses.push(course)
+    # only allow users to view their own accounts
+    if (current_user && current_user.id.to_s == params[:id])
+      @user = User.find(params[:id])
+      enrollment = Enrollment.find_by(user: @user.id)
+      courses_id_arr = enrollment.courses == nil ? nil : enrollment.courses.split(',')
+      @courses = []
+      if (courses_id_arr)
+        courses_id_arr.each do |c|
+          course = Course.find(c)
+          @courses.push(course)
+        end
       end
+    else
+      redirect_to root_url
     end
+
   end
 
   def new
