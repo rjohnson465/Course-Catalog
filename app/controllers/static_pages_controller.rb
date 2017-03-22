@@ -17,7 +17,7 @@ class StaticPagesController < ApplicationController
 
   def search
     @query = params[:q]
-    @courses = Course.where("subjects = ? or name = ?", @query, @query)
+    @courses = Course.where("subjects LIKE ? or name LIKE ?", "%#{@query}%", "%#{@query}%")
   end
 
 end

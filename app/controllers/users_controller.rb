@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     # only allow users to view their own accounts
-    if (current_user && current_user.id.to_s == params[:id])
+    if (logged_in? && current_user.id.to_s == params[:id])
       @user = User.find(params[:id])
       enrollment = Enrollment.find_by(user: @user.id)
       courses_id_arr = enrollment.courses == nil ? nil : enrollment.courses.split(',')
