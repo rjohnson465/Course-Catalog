@@ -26,4 +26,23 @@ class EnrollmentsController < ApplicationController
     redirect_to(:back)
   end
 
+  def unenroll
+    @enrollment = Enrollment.find_by(user: current_user.id)
+    enrolled_courses = @enrollment.courses.split(',')
+    new_enrolled_courses = nil
+    enrolled_courses.each do |course|
+      if course != params[:course_id]
+        if new_enrolled_courses == nil
+          new_enrolled_courses = course.id
+        else
+          new_enrolled_courses = new_enrolled_courses + "," + course.id.to_s
+        end
+      end
+    end
+    @enrollment.courses = new_enrolled_courses
+    @enrollment.save
+    flash[:success] = "Unenrolled from #{Course.find(params[:course_id])}!"
+    redirect_to(:back)
+  end
+
 end

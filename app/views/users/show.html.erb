@@ -15,6 +15,7 @@
           <tr>
             <th>Course</th>
             <th>Code</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -23,6 +24,7 @@
             <tr>
               <td><%= course.name %></td>
               <td><%= course.code %></td>
+              <td><%= link_to "Unenroll", unenroll_path(:course_id => course.id), :method => :put %></td>
             </tr>
           <% end %>
         </tbody>
