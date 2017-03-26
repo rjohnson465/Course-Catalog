@@ -1,5 +1,6 @@
 <h1> Search </h1>
 <%= form_tag(search_path(:q), method: :get) do %>
   <%= text_field_tag :q, params[:name], placeholder: "Search Courses" %>
+  <%= select_tag "subject", options_from_collection_for_select(Subject.all.sort_by(&:name), "id", "name"), :include_blank => "Any" %>
   <%= submit_tag "Submit" %>
 <% end %>
