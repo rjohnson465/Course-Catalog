@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+
+
+$(function() {
+  $("#courses_search").keyup(function() {
+    $.get(this.action, $(this).serialize(), null, "script");
+    return false;
+  });
+});

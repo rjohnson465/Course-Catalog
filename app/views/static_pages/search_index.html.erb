@@ -1,6 +1,9 @@
 <h1> Search </h1>
-<%= form_tag(search_path(:q), method: :get) do %>
+<%= form_tag(search_index_path, method: :get, :id => "courses_search", remote: true) do %>
   <%= text_field_tag :q, params[:name], placeholder: "Search Courses" %>
   <%= select_tag "subject", options_from_collection_for_select(Subject.all.sort_by(&:name), "id", "name"), :include_blank => "Any" %>
-  <%= submit_tag "Submit" %>
+  <%= submit_tag "", :id => 'Scomit', :style => "display: none;" %>
 <% end %>
+
+
+<div id="search_results"><%= render 'search_results' %></div>

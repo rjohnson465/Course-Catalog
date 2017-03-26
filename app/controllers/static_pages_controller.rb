@@ -13,8 +13,21 @@ class StaticPagesController < ApplicationController
   end
 
   def search_index
+    @courses = Course.order(:name).paginate(page: params[:page])
+    if params[:q] != nil && params[:subject] != nil
+      @query = params[:q] unless params[:q] == ""
+      @subject = Subject.find(params[:subject]).name unless params[:subject] == ""
+      if @subject == ""
+        @courses = Course.where("name LIKE ?", "%#{@query}%").paginate(page: params[:page])
+      elsif @query == ""
+        @courses = Course.where("subjects LIKE ?", "%#{@subject}%").paginate(page: params[:page])
+      else
+        @courses = Course.where("name LIKE ? and subjects LIKE ?", "%#{@query}%", "%#{@subject}%").paginate(page: params[:page])
+      end
+    end
   end
 
+=begin
   def search
     @query = params[:q]
     @subject = Subject.find(params[:subject]).name unless params[:subject] == ""
@@ -26,5 +39,5 @@ class StaticPagesController < ApplicationController
       @courses = Course.where("name LIKE ? and subjects LIKE ?", "%#{@query}%", "%#{@subject}%").paginate(page: params[:page])
     end
   end
-
+=end
 end
