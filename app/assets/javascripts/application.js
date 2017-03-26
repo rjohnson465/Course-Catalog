@@ -18,11 +18,13 @@
 
 
 $(function() {
+  // when search input changes
   $("#courses_search").keyup(function() {
     $.get(this.action, $(this).serialize(), null, "script");
     return false;
   });
 
+  // when subject input changes
   $("#courses_search").change(function() {
     $.get(this.action, $(this).serialize(), null, "script");
     return false;
