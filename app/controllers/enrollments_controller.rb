@@ -41,7 +41,7 @@ class EnrollmentsController < ApplicationController
     end
     @enrollment.courses = new_enrolled_courses
     @enrollment.save
-    flash[:success] = "Unenrolled from #{Course.find(params[:course_id])}!"
+    flash[:success] = "Unenrolled from #{Course.find(params[:course_id]).code}!"
     redirect_to(:back)
   end
 
