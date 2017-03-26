@@ -22,4 +22,9 @@ $(function() {
     $.get(this.action, $(this).serialize(), null, "script");
     return false;
   });
+
+  $("#courses_search").change(function() {
+    $.get(this.action, $(this).serialize(), null, "script");
+    return false;
+  });
 });
